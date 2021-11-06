@@ -1,0 +1,35 @@
+/*
+* Стили компонента Buton (Load more)
+*/
+.Button {
+  padding: 8px 16px;
+  margin-top: 60px;
+  background-color: #00008b;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  display: block;
+  color: #3deeee;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 700;
+  min-width: 180px;
+  max-width: 280px;
+  box-shadow: 10px 10px 8px 2px var(--shadow-color);
+  border-bottom: 4px solid #3deeee;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Button:hover {
+  color: #000;
+  background-color: #1e90ff;
+  border-bottom: 4px solid #000;
+  transform: scale(1.12);
+  cursor: hand;
+  cursor: pointer;
+}
