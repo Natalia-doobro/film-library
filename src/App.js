@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import AppBar from "./components/AppBar";
 import Loader from "./components/Loader";
+import BtnUp from "./components/BtnUp";
 import s from "./App.module.css";
 
 const HomePage = lazy(() =>
@@ -44,6 +45,8 @@ function App() {
           </Switch>
         </div>
       </Suspense>
+
+      <BtnUp />
     </div>
   );
 }

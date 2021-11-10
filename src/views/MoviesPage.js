@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useHistory, useLocation } from "react-router-dom";
 import { queryMovieSearch, pageMovieSearch } from "../components/API/API";
 
 import PegeHedging from "../components/PegeHedging";
@@ -16,26 +16,32 @@ function MoviesPage() {
   const [films, setFilms] = useState(null);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const history = useHistory();
+  const location = useLocation();
 
   const { url } = useRouteMatch();
 
   const dataProcessingForm = (data) => {
-    setName(data.name.toLowerCase());
+    history.push({ ...location, search: `inquiry=${data.name.toLowerCase()}` });
   };
 
   useEffect(() => {
-    if (!name) {
+    const searchInquiry =
+      new URLSearchParams(location.search).get("inquiry") ?? "";
+    if (!searchInquiry) {
       return;
     }
 
-    queryMovieSearch(name)
+    queryMovieSearch(searchInquiry)
       .then((film) => {
         setFilms(film.results);
       })
       .catch((error) => {
         setError(error);
       });
-  }, [name]);
+
+    setName(searchInquiry);
+  }, [location.search]);
 
   useEffect(() => {
     if (!name) {

@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import ApiError from "../components/ApiError";
 import Button from "../components/Button";
+
+import shortid from "shortid";
 import s from "../styles/ListFilm.module.css";
 
 function ListFilm({ itemFilm, onClick, url }) {
@@ -11,7 +13,7 @@ function ListFilm({ itemFilm, onClick, url }) {
       {itemFilm.length > 0 ? (
         <ul className={s.list}>
           {itemFilm.map((elem) => (
-            <li key={elem.id} className={s.item}>
+            <li key={shortid.generate()} className={s.item}>
               <Link
                 to={{
                   pathname: `${url}/${elem.id}`,
@@ -42,7 +44,11 @@ function ListFilm({ itemFilm, onClick, url }) {
         <ApiError onError="movie not found"></ApiError>
       )}
 
-      {itemFilm.length > 0 && onClick && <Button onClick={onClick}></Button>}
+      {itemFilm.length > 0 && onClick && (
+        <>
+          <Button onClick={onClick}></Button>{" "}
+        </>
+      )}
     </>
   );
 }
