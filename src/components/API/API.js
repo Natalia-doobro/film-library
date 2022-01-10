@@ -1,5 +1,6 @@
+require('dotenv').config();
 const BASE_URL = "https://api.themoviedb.org/3/";
-const key = "ed7b9278aeb5301d60721548fb74ac5d";
+const key = process.env.REACT_APP_API_KEY;
 
 export async function trendingMovieSearch() {
   return fetch(`${BASE_URL}trending/movie/week?api_key=${key}`).then((res) => {
